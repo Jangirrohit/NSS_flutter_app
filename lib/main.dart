@@ -4,8 +4,14 @@ import 'package:flutter_application_1/loginpage.dart';
 import 'package:flutter_application_1/dbhelper/mongobd.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await MongoDatabase.connect();
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    await MongoDatabase.connect();
+    runApp(const MyApp());
+  } catch (error) {
+    print('Error connecting to MongoDB: $error');
+  }
+
   runApp(const MyApp());
 }
 
